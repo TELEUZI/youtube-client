@@ -1,0 +1,40 @@
+{
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
+  "files.eol": "\n",
+  "search.exclude": {
+      ".vscode": true,
+      "dist": true,
+      "node_modules": true,
+      "aot": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "importSorter.generalConfiguration.sortOnBeforeSave": true,
+  "importSorter.sortConfiguration.customOrderingRules.rules": [
+      {
+          "regex": "^[@]",
+          "orderLevel": 10
+      },
+      {
+          "type": "importMember",
+          "regex": "^[@]ngrx.*",
+          "orderLevel": 10
+      },
+      {
+          "type": "importMember",
+          "regex": "^$",
+          "orderLevel": 30,
+          "disableSort": true
+      },
+      {
+          "regex": "^[.]",
+          "orderLevel": 40
+      }
+  ],
+  "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.organizeImports": true
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always"
+}
