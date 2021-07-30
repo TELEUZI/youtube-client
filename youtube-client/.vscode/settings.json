@@ -10,7 +10,7 @@
   },
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
-  "importSorter.generalConfiguration.sortOnBeforeSave": true,
+  //"importSorter.generalConfiguration.sortOnBeforeSave": true,
   "importSorter.sortConfiguration.customOrderingRules.rules": [
       {
           "regex": "^[@]",

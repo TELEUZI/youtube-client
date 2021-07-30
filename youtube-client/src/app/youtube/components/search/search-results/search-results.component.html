@@ -1,0 +1,6 @@
+<div class="search-results" *ngIf="videos.length">
+  <div *ngFor='let video of videos'> <app-search-item [video]="video"></app-search-item> </div>
+  <!-- <h2>Messages</h2>
+  <button class="clear"
+          (click)="clear()">Clear messages</button> -->
+</div>

@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FilterResultsComponent } from './filter/filter-results/filter-results.component';
-import { HeaderComponent } from './header/header/header.component';
-import { SearchItemComponent } from './search/search-item/search-item.component';
-import { SearchResultsComponent } from './search/search-results/search-results.component';
+import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { YoutubeModule } from './youtube/youtube.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    SearchResultsComponent,
-    SearchItemComponent,
-    FilterResultsComponent,
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    SharedModule,
+    CoreModule,
+    AuthModule,
+    YoutubeModule,
   ],
-  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
