@@ -1,10 +1,10 @@
-import Item, { Kind } from './search-item.model';
+import Video, { Kind } from './search-item.model';
 
 export interface SearchResponse {
   kind: Kind;
   etag: string;
   pageInfo: PageInfo;
-  items: Item[];
+  items: Video[];
 }
 
 export interface PageInfo {

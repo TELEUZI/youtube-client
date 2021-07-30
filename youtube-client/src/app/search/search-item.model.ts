@@ -1,5 +1,5 @@
-export default interface Item {
-  kind: Kind.YoutubeVideo;
+export default interface Video {
+  kind: string;
   etag: string;
   id: string;
   snippet: Snippet;
