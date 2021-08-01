@@ -1,10 +1,12 @@
 <div class="toolbar" role="banner">
-
-  <img
+  <a routerLink="/default">
+    <img
     width="120"
     alt="Angular Logo"
     src="./../../../../../assets/logo.svg"
   />
+  </a>
+
   <!-- <span>Welcome to our custom Youtube client.</span> -->
   <form action="
   ">
@@ -15,12 +17,12 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-  <button mat-flat-button color="primary" (click) = "getResult()">Primary</button>
+  <a routerLink="/search/{{value || 'default'}}" mat-flat-button color="primary" >Search</a>
 </form>
-<nav>
+<!-- <nav>
   <a routerLink="/default">Initial</a>
-  <a routerLink="/search">Search</a>
-</nav>
+  <a routerLink="/search/{{value}}">Search</a>
+</nav> -->
 
 
     <div class="spacer"></div>

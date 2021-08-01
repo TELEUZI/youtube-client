@@ -6,7 +6,7 @@ import { DefaultComponent } from './youtube/default/default.component';
 const routes: Routes = [
   { path: '', redirectTo: 'default', pathMatch: 'full' },
   { path: 'default', component: DefaultComponent },
-  { path: 'search', component: SearchResultsComponent },
+  { path: 'search/:name', component: SearchResultsComponent },
 ];
 
 @NgModule({

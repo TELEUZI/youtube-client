@@ -1,7 +1,7 @@
-import Video, { Kind } from './search-item.model';
+import Video from './search-item.model';
 
 export interface SearchResponse {
-  kind: Kind;
+  kind: string;
   etag: string;
   pageInfo: PageInfo;
   items: Video[];

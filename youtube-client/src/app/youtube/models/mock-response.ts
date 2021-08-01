@@ -1,4 +1,6 @@
-const YOUTUBE_RESPONSE = {
+import { SearchResponse } from './search-response.model';
+
+const YOUTUBE_RESPONSE: SearchResponse = {
   kind: 'youtube#videoListResponse',
   etag: '"Fznwjl6JEQdo1MGvHOGaz_YanRU/Cmodw7c5XPTM8Yg3kMXelihxek4"',
   pageInfo: {

@@ -6,13 +6,9 @@ import Video from 'src/app/youtube/models/search-item.model';
   templateUrl: './search-item.component.html',
   styleUrls: ['./search-item.component.scss'],
 })
-export class SearchItemComponent implements OnInit {
+export class SearchItemComponent{
   @Input()
   video!: Video;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
 // {kind = '',
 //     etag = '',

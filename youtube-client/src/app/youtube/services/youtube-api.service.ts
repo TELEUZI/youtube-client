@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import YOUTUBE_RESPONSE from '../models/mock-response';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import Video from '../models/search-item.model';
+import { SearchResponse } from '../models/search-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +11,9 @@ import Video from '../models/search-item.model';
 export class YoutubeApiService {
   constructor(private httpClient: HttpClient) {}
 
-  // eslint-disable-next-line class-methods-use-this
   getVideos(): Observable<Video[]> {
-    const heroes = of(YOUTUBE_RESPONSE.items);
-    return heroes;
+    const heroes = this.httpClient.get<SearchResponse>('../../../assets/mock-response.json');
+    const videos = heroes.pipe(map((response) => response.items));
+    return videos;
   }
 }
