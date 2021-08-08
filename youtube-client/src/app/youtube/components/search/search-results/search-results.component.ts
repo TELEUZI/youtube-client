@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import Video from 'src/app/youtube/models/search-item.model';
+import SortFieldType from 'src/app/youtube/models/sort-field.model';
+import { FilterVideoService } from 'src/app/youtube/services/filter-video.service';
 import { SearchVideoService } from 'src/app/youtube/services/search-service.service';
 
 @Component({
@@ -8,24 +10,17 @@ import { SearchVideoService } from 'src/app/youtube/services/search-service.serv
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent implements OnInit {
-  videos: Video[] = [];
+export class SearchResultsComponent {
+  @Input() sortType!: SortFieldType;
 
-  constructor(private searchVideoService: SearchVideoService, private route: ActivatedRoute) {}
+  @Input() orderType!: number;
 
-  ngOnInit(): void {
-    this.getVideos();
-  }
+  public readonly videos$: Observable<Video[]> = this.searchVideoService.videos$;
 
-  getVideos() {
-    const name = this.route.snapshot.paramMap.get('name');
-    console.log(name);
-    this.searchVideoService.getVideos().subscribe((videos) => {
-      this.videos = videos;
-    });
-  }
+  public readonly filterWord$: Observable<string> = this.filterVideoService.filterWord$;
 
-  clear() {
-    this.videos = [];
-  }
+  constructor(
+    public searchVideoService: SearchVideoService,
+    public filterVideoService: FilterVideoService,
+  ) {}
 }

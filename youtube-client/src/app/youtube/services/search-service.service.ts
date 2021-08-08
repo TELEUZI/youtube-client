@@ -1,39 +1,26 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import VideoServiceApi, { API_SERVICE } from '../models/api-service.model';
 import Video from '../models/search-item.model';
-import { MessageService } from './message.service';
-import { YoutubeApiService } from './youtube-api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchVideoService {
-  constructor(
-    private messageService: MessageService,
-    private youtubeApiService: YoutubeApiService,
-  ) {}
+  private readonly searchString$ = new BehaviorSubject<string>('');
+
+  public readonly videos$: Observable<Video[]> = this.searchString$.pipe(
+    switchMap((searchString) => this.videoApiService.getVideos(searchString)),
+  );
+
+  constructor(@Inject(API_SERVICE) private videoApiService: VideoServiceApi) {}
+
+  searchVideos(name: string) {
+    this.searchString$.next(name);
+  }
 
   getVideos(): Observable<Video[]> {
-    const heroes = this.youtubeApiService.getVideos();
-    this.messageService.add('HeroService: fetched heroes');
-    return heroes;
+    return this.videos$;
   }
-
-  getHero(id: string): Observable<Video> | null {
-    let hero: Video | undefined;
-    const heroes = this.youtubeApiService.getVideos();
-    heroes.subscribe((videos) => {
-      hero = videos.find((h) => h.id === id);
-    });
-    // const hero: Video = YOUTUBE_RESPONSE.items.find((h) => h.id === id)!;
-    // this.messageService.add(`HeroService: fetched hero id=${id}`);
-    if (hero) {
-      return of(hero);
-    }
-    return null;
-  }
-
-  // clear(): Video[] {
-  //   return [];
-  // }
 }
