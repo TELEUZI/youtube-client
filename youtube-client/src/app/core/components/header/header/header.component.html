@@ -1,0 +1,17 @@
+<div class="toolbar" role="banner">
+  <a routerLink="/default">
+    <img width="120" alt="Angular Logo" src="./../../../../../assets/logo.svg" />
+  </a>
+  <form action="">
+    <mat-form-field class="example-form-field" appearance="fill">
+      <input matInput type="search" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
+      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value = ''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button (click)="getResult(value)" mat-flat-button color="primary">Search</button>
+  </form>
+  <button (click)="toggleFilters()" *ngIf="isSearching">Show settings</button>
+  <div class="spacer"></div>
+  <app-login-information></app-login-information>
+</div>
