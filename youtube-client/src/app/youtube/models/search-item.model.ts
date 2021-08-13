@@ -3,6 +3,9 @@ export default interface Video {
   etag: string;
   id: string;
   snippet: Snippet;
+  contentDetails: {
+    duration: string;
+  };
   statistics: Statistics;
 }
 

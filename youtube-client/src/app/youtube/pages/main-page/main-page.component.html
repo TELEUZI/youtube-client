@@ -1,5 +1,7 @@
 <app-filter-results
-  *ngIf="this.filterVideoService.showFilters"
+  @toggle
+  *ngIf="filterWord | async"
   (sort)="updateSort($event)"
+  (filter)="setFilter($event)"
 ></app-filter-results>
 <app-search-results [sortType]="sortType" [orderType]="orderType"></app-search-results>

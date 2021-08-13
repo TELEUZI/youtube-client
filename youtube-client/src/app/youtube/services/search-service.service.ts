@@ -19,8 +19,4 @@ export class SearchVideoService {
   searchVideos(name: string) {
     this.searchString$.next(name);
   }
-
-  getVideos(): Observable<Video[]> {
-    return this.videos$;
-  }
 }

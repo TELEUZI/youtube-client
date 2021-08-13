@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -6,20 +7,21 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { YoutubeModule } from './youtube/youtube.module';
+import { API_SERVICE } from './youtube/models/api-service.model';
+import { YoutubeApiService } from './youtube/services/youtube-api.service';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
     CoreModule,
     AuthModule,
-    YoutubeModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [{ provide: API_SERVICE, useClass: YoutubeApiService, deps: [HttpClient] }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,7 +1,5 @@
-<div>
-  <span>Sort by:</span>
-  <button (click)="sortByDate()" class="mat-sort-header">Date</button>
-  <button (click)="sortByCount()" class="mat-sort-header">Count of views</button>
-  <p>Filter by title</p>
-  <input #filter type="text" (input)="setFilter(filter.value)" />
-</div>
+<span>Sort by:</span>
+<button (click)="sortByDate()" class="mat-sort-header">Date</button>
+<button (click)="sortByCount()" class="mat-sort-header">Count of views</button>
+<p>Filter by title</p>
+<input #filter type="text" (input)="setFilter(filter.value)" />

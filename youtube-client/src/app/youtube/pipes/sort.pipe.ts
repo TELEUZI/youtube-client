@@ -23,9 +23,9 @@ export class SortPipe implements PipeTransform {
     if (videos) {
       switch (param) {
         case SortFieldType.DATE:
-          return order ? videos.sort(sortByDateDesc) : videos.sort(sortByDateAsc);
+          return videos.sort(order ? sortByDateDesc : sortByDateAsc);
         case SortFieldType.VIEWS:
-          return order ? videos.sort(sortByViewsDesc) : videos.sort(sortByViewsAsc);
+          return videos.sort(order ? sortByViewsDesc : sortByViewsAsc);
         default:
           return videos;
       }

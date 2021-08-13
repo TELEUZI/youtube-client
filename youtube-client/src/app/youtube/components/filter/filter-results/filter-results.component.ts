@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import SortFieldType from 'src/app/youtube/models/sort-field.model';
-import { FilterVideoService } from 'src/app/youtube/services/filter-video.service';
 
 @Component({
   selector: 'app-filter-results',
@@ -10,9 +9,7 @@ import { FilterVideoService } from 'src/app/youtube/services/filter-video.servic
 export class FilterResultsComponent {
   @Output() sort = new EventEmitter<SortFieldType>();
 
-  constructor(public filterVideoService: FilterVideoService) {}
-
-  filterWord = '';
+  @Output() filter = new EventEmitter<string>();
 
   sortByCount() {
     this.sort.emit(SortFieldType.VIEWS);
@@ -23,6 +20,6 @@ export class FilterResultsComponent {
   }
 
   setFilter(value: string) {
-    this.filterVideoService.setFilterWord(value);
+    this.filter.emit(value);
   }
 }
