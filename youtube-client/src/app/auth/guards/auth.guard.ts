@@ -11,6 +11,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
+import { RouteNames } from 'src/app/app.constants';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -37,11 +38,10 @@ export class AuthGuard implements CanActivate, CanLoad {
     return this.authService.isAuthenticated$.pipe(
       first(),
       map((isAuthenticated) => {
-        console.log(isAuthenticated);
         if (!isAuthenticated) {
-          this.router.navigateByUrl('/login');
+          this.router.navigateByUrl(RouteNames.LOGIN);
         }
-        return isAuthenticated.valueOf();
+        return isAuthenticated;
       }),
     );
   }

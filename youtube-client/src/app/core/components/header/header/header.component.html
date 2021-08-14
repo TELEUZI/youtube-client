@@ -1,4 +1,4 @@
-<a routerLink="/default">
+<a routerLink="/">
   <img class="logo" alt="Angular Logo" src="./../../../../../assets/logo.svg" />
 </a>
 <div class="search-group">
@@ -15,14 +15,20 @@
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
-    <!-- <a routerLink="/user/bob" routerLinkActive #rla="routerLinkActive">
-      Bob {{ rla.isActive ? '(already open)' : '' }}
-    </a> -->
     <button (click)="getResult(value)" mat-flat-button color="primary" [disabled]="!isMain">
       Search
     </button>
   </form>
-  <button class="settings" (click)="toggleFilters()" *ngIf="isSearching && isMain"></button>
+  <button
+    mat-ripple
+    class="settings"
+    (click)="toggleFilters()"
+    *ngIf="isSearching && isMain"
+  ></button>
 </div>
 
-<app-login-information></app-login-information>
+<app-login-information
+  [userName]="authService.userName"
+  [isLoggedIn]="isLoggedIn$ | async"
+  (logOut)="logOut()"
+></app-login-information>

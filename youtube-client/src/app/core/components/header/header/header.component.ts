@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Event, NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { FilterVideoService } from 'src/app/youtube/services/filter-video.service';
 import { SearchVideoService } from 'src/app/youtube/services/search-service.service';
 
@@ -14,36 +15,33 @@ export class HeaderComponent implements OnInit {
 
   isSearching = false;
 
+  userName = this.authService.userName;
+
+  isLoggedIn$ = this.authService.isAuthenticated$;
+
   url?: string;
 
   constructor(
     private searchVideoService: SearchVideoService,
     private filterVideoService: FilterVideoService,
     public router: Router,
+    public authService: AuthService,
   ) {}
 
   ngOnInit(): void {
-    // this.router.url.value[0].path
     this.router.events
       .pipe(filter((e: Event): e is RouterEvent => e instanceof NavigationEnd))
       .subscribe(() => {
         this.url = this.router.url;
       });
-    // this.router.events
-    //   .pipe(filter((e: Event_2): e is RouterEvent => e instanceof NavigationEnd))
-    //   .subscribe((e: Event): e is RouterEvent => {
-    //     if (event instanceof NavigationEnd) {
-    //       this.url = this.router.url;
-    //     }
-    //   });
-    // this.router.url.subscribe((url) => {
-    //   this.url = url[0].path;
-    //   console.log(this.url);
-    // });
   }
 
   get isMain() {
     return this.url === '/';
+  }
+
+  logOut() {
+    this.authService.logOut();
   }
 
   getResult(value: string) {

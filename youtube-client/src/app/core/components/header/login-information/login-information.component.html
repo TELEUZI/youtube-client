@@ -1,2 +1,5 @@
-<div class="avatar"></div>
-<p>username</p>
+<div *ngIf="isLoggedIn" class="avatar"></div>
+<p *ngIf="isLoggedIn">{{ userName }}</p>
+<!-- <button (click)="emitLogIn()" *ngIf="!isLoggedIn">Sign In</button> -->
+<a mat-flat-button class="btn btn-primary" *ngIf="!isLoggedIn" routerLink="login">LogIn</a>
+<button mat-flat-button (click)="emitLogOut()" *ngIf="isLoggedIn">Logout</button>
