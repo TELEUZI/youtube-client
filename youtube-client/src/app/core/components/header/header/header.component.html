@@ -28,7 +28,7 @@
 </div>
 
 <app-login-information
-  [userName]="authService.userName"
+  [userName]="userName$ | async"
   [isLoggedIn]="isLoggedIn$ | async"
   (logOut)="logOut()"
 ></app-login-information>

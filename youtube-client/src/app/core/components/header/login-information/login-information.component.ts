@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./login-information.component.scss'],
 })
 export class LoginInformationComponent {
-  @Input() userName!: string;
+  @Input() userName!: string | null;
 
   @Input() isLoggedIn!: boolean | null;
 

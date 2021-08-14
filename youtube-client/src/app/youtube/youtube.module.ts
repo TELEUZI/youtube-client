@@ -30,9 +30,5 @@ export function videoServiceFactory(httpClient: HttpClient) {
   ],
   imports: [SharedModule, YoutubeRoutingModule],
   exports: [MainPageComponent],
-  providers: [
-    // { provide: API_SERVICE, useFactory: videoServiceFactory, deps: [HttpClient] },
-    // FilterVideoService,
-  ],
 })
 export class YoutubeModule {}

@@ -12,17 +12,15 @@ function getNextOrderType(orderType: number) {
   styleUrls: ['./main-page.component.scss'],
   animations: [
     trigger('toggle', [
-      // state(':leave', style({ opacity: 1 })),
-      // state(':enter', style({ opacity: 0 })),
       transition(':enter', [style({ opacity: 0 }), animate('100ms', style({ opacity: 1 }))]),
       transition(':leave', [animate('100ms', style({ opacity: 0 }))]),
     ]),
   ],
 })
 export class MainPageComponent {
-  sortType = SortFieldType.DATE;
+  public sortType = SortFieldType.DATE;
 
-  orderType = 0;
+  public orderType = 0;
 
   constructor(private filterVideoService: FilterVideoService) {}
 

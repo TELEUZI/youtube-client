@@ -20,7 +20,7 @@ export class SearchResultsComponent {
   public readonly filterWord$: Observable<string> = this.filterVideoService.filterWord$;
 
   constructor(
-    public searchVideoService: SearchVideoService,
+    private searchVideoService: SearchVideoService,
     public filterVideoService: FilterVideoService,
   ) {}
 }

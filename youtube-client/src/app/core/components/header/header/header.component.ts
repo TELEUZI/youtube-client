@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   isSearching = false;
 
-  userName = this.authService.userName;
+  userName$ = this.authService.userName$;
 
   isLoggedIn$ = this.authService.isAuthenticated$;
 
@@ -24,8 +24,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private searchVideoService: SearchVideoService,
     private filterVideoService: FilterVideoService,
-    public router: Router,
-    public authService: AuthService,
+    private router: Router,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +45,6 @@ export class HeaderComponent implements OnInit {
   }
 
   getResult(value: string) {
-    console.log(this.url);
     this.toggleFiltersButton();
     this.searchVideoService.searchVideos(value);
   }

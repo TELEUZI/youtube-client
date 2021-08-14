@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import StorageService, { STORAGE_SERVICE } from 'src/app/core/models/storage-service.model';
 
 @Injectable({
@@ -9,7 +9,9 @@ import StorageService, { STORAGE_SERVICE } from 'src/app/core/models/storage-ser
 export class AuthService {
   private isAuthenticatedSource$$ = new BehaviorSubject<boolean>(this.getAuthenticated());
 
-  userName: string = 'Anonymous';
+  private userNameSource$$ = new Subject<string>();
+
+  public userName$ = this.userNameSource$$.asObservable();
 
   public isAuthenticated$ = this.isAuthenticatedSource$$.pipe();
 
@@ -33,7 +35,7 @@ export class AuthService {
   }
 
   logIn(userName: string, password: string) {
-    this.userName = userName;
+    this.userNameSource$$.next(userName);
     this.isAuthenticatedSource$$.next(true);
     this.storageService.set(
       'userToken',

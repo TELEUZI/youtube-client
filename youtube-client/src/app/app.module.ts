@@ -20,7 +20,6 @@ import { YoutubeApiService } from './youtube/services/youtube-api.service';
     HttpClientModule,
   ],
   providers: [{ provide: API_SERVICE, useClass: YoutubeApiService, deps: [HttpClient] }],
-  // providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
