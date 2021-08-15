@@ -20,7 +20,8 @@
         "airbnb-typescript/base",
         "plugin:@angular-eslint/template/process-inline-templates",
         "eslint-config-prettier",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:rxjs/recommended"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -40,7 +41,8 @@
           }
         ],
         "import/prefer-default-export": "off",
-        "class-methods-use-this": ["error", { "exceptMethods": ["transform", "canActivate", "canLoad"] }]
+        "class-methods-use-this": ["error", { "exceptMethods": ["transform", "canActivate", "canLoad"] }],
+        "no-console": "off"
       }
     },
     {

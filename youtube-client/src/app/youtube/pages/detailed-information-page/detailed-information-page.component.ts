@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { map, switchMap } from 'rxjs/operators';
 import Video from '../../models/search-item.model';
 import { SearchVideoService } from '../../services/search-service.service';
 
@@ -9,15 +10,21 @@ import { SearchVideoService } from '../../services/search-service.service';
   styleUrls: ['./detailed-information-page.component.scss'],
 })
 export class DetailedInformationPageComponent implements OnInit {
-  public video: Video = {} as Video;
+  public video?: Video;
 
   constructor(private route: ActivatedRoute, private searchVideoService: SearchVideoService) {}
 
   ngOnInit(): void {
-    this.searchVideoService.videos$.subscribe((v) => {
-      this.route.params.subscribe((params) => {
-        this.video = v.find((vid) => vid.id === params.name) || ({} as Video);
+    this.route.params
+      .pipe(
+        switchMap((params: Params) => {
+          return this.searchVideoService.videos$.pipe(
+            map((videos: Video[]) => videos.find((video) => video.id === params.name)),
+          );
+        }),
+      )
+      .subscribe((video: Video | undefined) => {
+        this.video = video;
       });
-    });
   }
 }

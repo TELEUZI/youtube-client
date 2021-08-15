@@ -1,5 +1,5 @@
 <a [routerLink]="['/']">Назад</a>
-<mat-card class="card" appBorderColor [publishTime]="video.snippet.publishedAt">
+<mat-card *ngIf="video" class="card" appBorderColor [publishTime]="video.snippet.publishedAt">
   <img mat-card-image src="{{ video.snippet.thumbnails.maxres.url }}" alt="Photo of a Shiba Inu" />
   <div class="card-con">
     <div class="card__sub">
