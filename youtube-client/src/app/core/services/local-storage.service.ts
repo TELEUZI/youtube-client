@@ -1,20 +1,24 @@
-/* eslint-disable class-methods-use-this */
-import { Injectable } from '@angular/core';
+import { Inject, inject, Injectable, InjectionToken } from '@angular/core';
 import StorageService from '../models/storage-service.model';
 
+export const LOCAL_STORAGE = new InjectionToken<Storage>('localStorage abstraction', {
+  factory: () => inject(Window).localStorage,
+});
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStorageService implements StorageService {
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: Storage) {}
+
   get(name: string): string | null {
-    return localStorage.getItem(name);
+    return this.localStorage.getItem(name);
   }
 
   set(name: string, value: string): void {
-    localStorage.setItem(name, value);
+    this.localStorage.setItem(name, value);
   }
 
   remove(name: string): void {
-    localStorage.removeItem(name);
+    this.localStorage.removeItem(name);
   }
 }

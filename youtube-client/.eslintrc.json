@@ -40,8 +40,7 @@
           }
         ],
         "import/prefer-default-export": "off",
-        "class-methods-use-this": ["error", { "exceptMethods": ["transform", "canActivate", "canLoad"] }],
-        "no-console": "off"
+        "class-methods-use-this": ["error", { "exceptMethods": ["transform", "canActivate", "canLoad"] }]
       }
     },
     {

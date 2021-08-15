@@ -18,7 +18,9 @@ export class AuthService {
   constructor(
     @Inject(STORAGE_SERVICE) private storageService: StorageService,
     private router: Router,
-  ) {}
+  ) {
+    // this.isAuthenticatedSource$$.next(!!this.storageService.get('userToken'));
+  }
 
   setAuthenticated(value: boolean) {
     this.isAuthenticatedSource$$.next(value);

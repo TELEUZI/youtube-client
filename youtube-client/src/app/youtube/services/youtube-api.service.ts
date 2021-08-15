@@ -13,7 +13,6 @@ export class YoutubeApiService implements VideoServiceApi {
   constructor(private httpClient: HttpClient) {}
 
   getVideos(name: string): Subject<Video[]> {
-    console.log(name);
     return name
       ? (this.httpClient
           .get<SearchResponse>('../../../assets/mock-response.json')

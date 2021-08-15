@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import SortFieldType from '../../models/sort-field.model';
 import { FilterVideoService } from '../../services/filter-video.service';
 
@@ -17,16 +18,22 @@ function getNextOrderType(orderType: number) {
     ]),
   ],
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit {
   public sortType = SortFieldType.DATE;
 
   public orderType = 0;
 
+  filterWord!: Observable<string>;
+
   constructor(private filterVideoService: FilterVideoService) {}
 
-  get filterWord() {
-    return this.filterVideoService.getFilterChange();
+  ngOnInit(): void {
+    this.filterWord = this.filterVideoService.filterWord$;
   }
+
+  // get filterWord() {
+  //   return this.filterVideoService.filterWord$;
+  // }
 
   updateSort(type: SortFieldType) {
     if (type === this.sortType) {

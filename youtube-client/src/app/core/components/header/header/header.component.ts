@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Event, NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FilterVideoService } from 'src/app/youtube/services/filter-video.service';
@@ -15,9 +16,9 @@ export class HeaderComponent implements OnInit {
 
   isSearching = false;
 
-  userName$ = this.authService.userName$;
+  userName$!: Observable<string>;
 
-  isLoggedIn$ = this.authService.isAuthenticated$;
+  isLoggedIn$!: Observable<boolean>;
 
   url?: string;
 
@@ -29,6 +30,8 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userName$ = this.authService.userName$;
+    this.isLoggedIn$ = this.authService.isAuthenticated$;
     this.router.events
       .pipe(filter((e: Event): e is RouterEvent => e instanceof NavigationEnd))
       .subscribe(() => {
