@@ -12,15 +12,15 @@ import { SearchVideoService } from 'src/app/youtube/services/search-service.serv
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  value: string = '';
+  public value: string = '';
 
-  isSearching = false;
+  public isSearching = false;
 
-  userName$!: Observable<string>;
+  public userName$!: Observable<string>;
 
-  isLoggedIn$!: Observable<boolean>;
+  public isLoggedIn$!: Observable<boolean>;
 
-  url?: string;
+  public url?: string;
 
   constructor(
     private searchVideoService: SearchVideoService,

@@ -5,14 +5,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { LoginInformationComponent } from './components/header/login-information/login-information.component';
 import { CoreRoutingModule } from './core-routing.module';
-import { STORAGE_SERVICE } from './models/storage-service.model';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { LocalStorageService } from './services/local-storage.service';
+import { STORAGE_SERVICE_PROVIDER } from './providers/storage-service.provider';
+import { WINDOW_PROVIDER } from './providers/window.provider';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, LoginInformationComponent, NotFoundComponent],
   imports: [SharedModule, FormsModule, CoreRoutingModule],
   exports: [HeaderComponent, FooterComponent],
-  providers: [{ provide: STORAGE_SERVICE, useClass: LocalStorageService }],
+  providers: [WINDOW_PROVIDER, STORAGE_SERVICE_PROVIDER],
 })
 export class CoreModule {}

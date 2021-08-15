@@ -11,9 +11,9 @@ import { SearchVideoService } from 'src/app/youtube/services/search-service.serv
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent {
-  @Input() sortType!: SortFieldType;
+  @Input() public sortType!: SortFieldType;
 
-  @Input() orderType!: number;
+  @Input() public orderType!: number;
 
   public readonly videos$: Observable<Video[]> = this.searchVideoService.videos$;
 

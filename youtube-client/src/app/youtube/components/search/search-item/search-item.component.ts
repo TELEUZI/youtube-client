@@ -7,5 +7,5 @@ import Video from 'src/app/youtube/models/search-item.model';
   styleUrls: ['./search-item.component.scss'],
 })
 export class SearchItemComponent {
-  @Input() video!: Video;
+  @Input() public video!: Video;
 }

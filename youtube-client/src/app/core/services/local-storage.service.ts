@@ -1,9 +1,7 @@
-import { Inject, inject, Injectable, InjectionToken } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import StorageService from '../models/storage-service.model';
+import { LOCAL_STORAGE } from '../providers/storage.provider';
 
-export const LOCAL_STORAGE = new InjectionToken<Storage>('localStorage abstraction', {
-  factory: () => inject(Window).localStorage,
-});
 @Injectable({
   providedIn: 'root',
 })

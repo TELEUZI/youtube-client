@@ -6,13 +6,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./login-information.component.scss'],
 })
 export class LoginInformationComponent {
-  @Input() userName!: string | null;
+  @Input() public userName!: string | null;
 
-  @Input() isLoggedIn!: boolean | null;
+  @Input() public isLoggedIn!: boolean | null;
 
-  @Output() logOut = new EventEmitter();
+  @Output() public readonly logOut = new EventEmitter();
 
-  @Output() logIn = new EventEmitter();
+  @Output() public readonly logIn = new EventEmitter();
 
   emitLogOut() {
     this.logOut.emit();

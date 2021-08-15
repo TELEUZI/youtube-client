@@ -7,9 +7,9 @@ import SortFieldType from 'src/app/youtube/models/sort-field.model';
   styleUrls: ['./filter-results.component.scss'],
 })
 export class FilterResultsComponent {
-  @Output() sort = new EventEmitter<SortFieldType>();
+  @Output() public readonly sort = new EventEmitter<SortFieldType>();
 
-  @Output() filter = new EventEmitter<string>();
+  @Output() public readonly filter = new EventEmitter<string>();
 
   sortByCount() {
     this.sort.emit(SortFieldType.VIEWS);

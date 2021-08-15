@@ -9,7 +9,7 @@ import { SearchVideoService } from '../../services/search-service.service';
   styleUrls: ['./detailed-information-page.component.scss'],
 })
 export class DetailedInformationPageComponent implements OnInit {
-  video: Video = {} as Video;
+  public video: Video = {} as Video;
 
   constructor(private route: ActivatedRoute, private searchVideoService: SearchVideoService) {}
 

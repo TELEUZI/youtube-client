@@ -5,7 +5,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class FilterVideoService {
-  private showFilters$ = new BehaviorSubject<boolean>(false);
+  private readonly showFilters$ = new BehaviorSubject<boolean>(false);
 
   private readonly filterWordSourse$$: Subject<string> = new Subject<string>();
 

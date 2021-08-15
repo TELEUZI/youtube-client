@@ -23,17 +23,13 @@ export class MainPageComponent implements OnInit {
 
   public orderType = 0;
 
-  filterWord!: Observable<string>;
+  public filterWord!: Observable<string>;
 
   constructor(private filterVideoService: FilterVideoService) {}
 
   ngOnInit(): void {
     this.filterWord = this.filterVideoService.filterWord$;
   }
-
-  // get filterWord() {
-  //   return this.filterVideoService.filterWord$;
-  // }
 
   updateSort(type: SortFieldType) {
     if (type === this.sortType) {

@@ -1,8 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import VideoServiceApi, { API_SERVICE } from '../models/api-service.model';
+import VideoServiceApi from '../models/api-service.model';
 import Video from '../models/search-item.model';
+import { API_SERVICE } from '../providers/video-service.provider';
 
 @Injectable({
   providedIn: 'root',

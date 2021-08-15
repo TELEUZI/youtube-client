@@ -1,26 +1,25 @@
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
-import StorageService, { STORAGE_SERVICE } from 'src/app/core/models/storage-service.model';
+import StorageService from 'src/app/core/models/storage-service.model';
+import { STORAGE_SERVICE } from 'src/app/core/providers/storage-service.provider';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticatedSource$$ = new BehaviorSubject<boolean>(this.getAuthenticated());
+  private readonly isAuthenticatedSource$$ = new BehaviorSubject<boolean>(this.getAuthenticated());
 
-  private userNameSource$$ = new Subject<string>();
+  private readonly userNameSource$$ = new Subject<string>();
 
-  public userName$ = this.userNameSource$$.asObservable();
+  public readonly userName$ = this.userNameSource$$.asObservable();
 
-  public isAuthenticated$ = this.isAuthenticatedSource$$.pipe();
+  public readonly isAuthenticated$ = this.isAuthenticatedSource$$.pipe();
 
   constructor(
     @Inject(STORAGE_SERVICE) private storageService: StorageService,
     private router: Router,
-  ) {
-    // this.isAuthenticatedSource$$.next(!!this.storageService.get('userToken'));
-  }
+  ) {}
 
   setAuthenticated(value: boolean) {
     this.isAuthenticatedSource$$.next(value);
