@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import StorageService from 'src/app/core/models/storage-service.model';
 import { STORAGE_SERVICE } from 'src/app/core/providers/storage-service.provider';
 
@@ -10,9 +10,11 @@ import { STORAGE_SERVICE } from 'src/app/core/providers/storage-service.provider
 export class AuthService {
   private readonly isAuthenticatedSource$$ = new BehaviorSubject<boolean>(this.getAuthenticated());
 
-  private readonly userNameSource$$ = new Subject<string>();
+  private readonly userNameSource$$ = new BehaviorSubject<string>(
+    this.storageService.get('userName') || '',
+  );
 
-  public readonly userName$ = this.userNameSource$$.asObservable();
+  public readonly userName$ = this.userNameSource$$.pipe();
 
   public readonly isAuthenticated$ = this.isAuthenticatedSource$$.pipe();
 
@@ -33,11 +35,13 @@ export class AuthService {
     this.isAuthenticatedSource$$.next(false);
     this.router.navigateByUrl('/login');
     this.storageService.remove('userToken');
+    this.storageService.remove('userName');
   }
 
   logIn(userName: string, password: string) {
     this.userNameSource$$.next(userName);
     this.isAuthenticatedSource$$.next(true);
+    this.storageService.set('userName', userName);
     this.storageService.set(
       'userToken',
       (userName.length + Math.random() * password.length).toString(16),
