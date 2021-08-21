@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import VideoServiceApi from '../models/api-service.model';
-import Video from '../models/search-item.model';
+import { VideoStatsExtented } from '../models/search-item.model';
 import { API_SERVICE } from '../providers/video-service.provider';
 
 @Injectable({
@@ -11,7 +11,10 @@ import { API_SERVICE } from '../providers/video-service.provider';
 export class SearchVideoService {
   private readonly searchString$ = new BehaviorSubject<string>('');
 
-  public readonly videos$: Observable<Video[]> = this.searchString$.pipe(
+  public readonly videos$: Observable<VideoStatsExtented[]> = this.searchString$.pipe(
+    debounceTime(500),
+    distinctUntilChanged(),
+    map((searchString) => (searchString.length > 3 ? searchString : '')),
     switchMap((searchString) => this.videoApiService.getVideos(searchString)),
   );
 

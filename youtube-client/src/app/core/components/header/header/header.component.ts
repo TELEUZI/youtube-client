@@ -48,7 +48,6 @@ export class HeaderComponent implements OnInit {
   }
 
   getResult(value: string) {
-    this.toggleFiltersButton();
     this.searchVideoService.searchVideos(value);
   }
 

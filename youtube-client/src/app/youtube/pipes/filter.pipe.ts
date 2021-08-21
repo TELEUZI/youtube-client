@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import Video from '../models/search-item.model';
+import { VideoStatsExtented } from '../models/search-item.model';
 
 @Pipe({
   name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
-  transform(value: Video[], input: string): Video[] {
+  transform(value: VideoStatsExtented[], input: string): VideoStatsExtented[] {
     if (input) {
       return value.filter((video) => video.snippet.title.includes(input));
     }

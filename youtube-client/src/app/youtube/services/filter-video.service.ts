@@ -5,18 +5,16 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class FilterVideoService {
-  private readonly showFilters$ = new BehaviorSubject<boolean>(false);
+  private readonly showFilters$$ = new BehaviorSubject<boolean>(false);
 
   private readonly filterWordSourse$$: Subject<string> = new Subject<string>();
 
   public readonly filterWord$ = this.filterWordSourse$$.pipe();
 
-  getFilterChange(): Subject<boolean> {
-    return this.showFilters$;
-  }
+  public readonly isFilterShow$ = this.showFilters$$.pipe();
 
   toggleFilters() {
-    this.showFilters$.next(!this.showFilters$.value);
+    this.showFilters$$.next(!this.showFilters$$.value);
   }
 
   setFilterWord(word: string) {

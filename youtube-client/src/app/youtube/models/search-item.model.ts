@@ -1,14 +1,17 @@
-export default interface Video {
-  kind: string;
-  etag: string;
-  id: string;
-  snippet: Snippet;
+export interface VideoStatsExtented extends Video {
   contentDetails: {
     duration: string;
   };
   statistics: Statistics;
 }
-
+export interface Video {
+  kind: string;
+  etag: string;
+  id: {
+    videoId: string;
+  };
+  snippet: Snippet;
+}
 export interface Snippet {
   publishedAt: string;
   channelId: string;

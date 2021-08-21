@@ -4,7 +4,13 @@
 <div class="search-group">
   <form action="">
     <mat-form-field class="example-form-field" appearance="fill">
-      <input matInput type="search" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
+      <input
+        (input)="getResult(value)"
+        matInput
+        type="search"
+        [(ngModel)]="value"
+        [ngModelOptions]="{ standalone: true }"
+      />
       <button
         *ngIf="value"
         matSuffix
@@ -15,16 +21,8 @@
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
-    <button (click)="getResult(value)" mat-flat-button color="primary" [disabled]="!isMain">
-      Search
-    </button>
   </form>
-  <button
-    mat-ripple
-    class="settings"
-    (click)="toggleFilters()"
-    *ngIf="isSearching && isMain"
-  ></button>
+  <button mat-ripple class="settings" (click)="toggleFilters()">1</button>
 </div>
 
 <app-login-information

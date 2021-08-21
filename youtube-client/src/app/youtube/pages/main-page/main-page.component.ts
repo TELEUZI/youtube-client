@@ -25,10 +25,13 @@ export class MainPageComponent implements OnInit {
 
   public filterWord!: Observable<string>;
 
+  public isShow!: Observable<boolean>;
+
   constructor(private filterVideoService: FilterVideoService) {}
 
   ngOnInit(): void {
     this.filterWord = this.filterVideoService.filterWord$;
+    this.isShow = this.filterVideoService.isFilterShow$;
   }
 
   updateSort(type: SortFieldType) {
