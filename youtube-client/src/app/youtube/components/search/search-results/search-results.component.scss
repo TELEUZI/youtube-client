@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 60px;
+}
+
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-auto-rows: minmax(400px, auto);
+  grid-gap: 20px;
+}

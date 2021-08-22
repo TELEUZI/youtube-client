@@ -1,0 +1,47 @@
+<div appBorderColor [publishTime]="video.snippet.publishedAt" class="cards__card card">
+  <div class="card__image">
+    <img src="{{ video.snippet.thumbnails.maxres.url }}" alt="" />
+  </div>
+  <div class="card__body">
+    <div class="card__title flexible">
+      <p>{{ video.snippet.title }}</p>
+    </div>
+    <div class="channel">
+      <p class="channel__name">
+        {{ video.snippet.channelTitle }} <span class="dot">•</span>
+        {{ video.snippet.publishedAt | date }}
+      </p>
+    </div>
+    <div class="statistics">
+      <div class="statistics__item">
+        <div class="statistics-icon view-count-icon"></div>
+        <p>
+          {{ video.statistics.viewCount }}
+        </p>
+      </div>
+      <div class="statistics__item count-icon">
+        <div class="statistics-icon like-count-icon"></div>
+        <p>
+          {{ video.statistics.likeCount }}
+        </p>
+      </div>
+      <div class="statistics__item">
+        <div class="statistics-icon dislike-count-icon"></div>
+        <p>
+          {{ video.statistics.dislikeCount }}
+        </p>
+      </div>
+      <div class="statistics__item">
+        <div class="statistics-icon comment-count-icon"></div>
+        <p>
+          {{ video.statistics.commentCount }}
+        </p>
+      </div>
+    </div>
+    <div class="card__bottom">
+      <div class="card__button">
+        <a [routerLink]="['search', video.id]" class="btn btn-primary" mat-button>Details</a>
+      </div>
+    </div>
+  </div>
+</div>

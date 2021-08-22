@@ -1,0 +1,70 @@
+:host {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+
+p {
+  margin: 0;
+}
+
+.settings {
+  display: block;
+  height: 40px;
+  width: 40px;
+  border: none;
+  background-color: transparent;
+  background-image: url(../../../../../assets/settings.svg);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  // &:active {
+  //   background-color: #3e8e41;
+  //   box-shadow: 0 5px #666;
+  //   transform: translateY(4px);
+  // }
+
+}
+
+.logo {
+  width: 120px;
+  max-height: 30px;
+
+}
+
+.search-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+a {
+  color: rgb(224, 224, 224);
+
+  &:hover {
+    color: darkorange;
+  }
+}
