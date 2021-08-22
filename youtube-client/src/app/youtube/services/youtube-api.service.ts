@@ -5,6 +5,7 @@ import { map, pluck, switchMap } from 'rxjs/operators';
 import VideoServiceApi from '../models/api-service.model';
 import { VideoStatsExtented } from '../models/search-item.model';
 import { SearchResponse, SearchVideoResponse } from '../models/search-response.model';
+
 const BASE_API_URL = 'https://youtube.googleapis.com/youtube/v3';
 @Injectable({
   providedIn: 'root',

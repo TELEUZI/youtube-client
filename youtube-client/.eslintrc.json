@@ -41,7 +41,7 @@
           }
         ],
         "import/prefer-default-export": "off",
-        "class-methods-use-this": ["error", { "exceptMethods": ["transform", "canActivate", "canLoad"] }],
+        "class-methods-use-this": ["error", { "exceptMethods": ["transform", "canActivate", "canLoad", "intercept", "videoById"] }],
         "no-console": "off"
       }
     },

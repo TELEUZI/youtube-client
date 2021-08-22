@@ -12,6 +12,7 @@ import { SearchVideoService } from '../../services/search-service.service';
 })
 export class DetailedInformationPageComponent implements OnInit, OnDestroy {
   destroy$: Subject<void> = new Subject();
+
   public video?: VideoStatsExtented;
 
   constructor(private route: ActivatedRoute, private searchVideoService: SearchVideoService) {}
@@ -19,15 +20,16 @@ export class DetailedInformationPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params
       .pipe(
-        takeUntil(this.destroy$),
         switchMap((params: Params) => {
           return this.searchVideoService.searchVideoById(params.name);
         }),
+        takeUntil(this.destroy$),
       )
       .subscribe((video: VideoStatsExtented | undefined) => {
         this.video = video;
       });
   }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

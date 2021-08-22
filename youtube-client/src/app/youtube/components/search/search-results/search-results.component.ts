@@ -23,4 +23,8 @@ export class SearchResultsComponent {
     private searchVideoService: SearchVideoService,
     public filterVideoService: FilterVideoService,
   ) {}
+
+  videoById(_index: number, video: VideoStatsExtented): string {
+    return video.id.videoId;
+  }
 }

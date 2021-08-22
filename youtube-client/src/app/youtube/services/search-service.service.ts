@@ -23,6 +23,7 @@ export class SearchVideoService {
   searchVideos(name: string) {
     this.searchString$.next(name);
   }
+
   searchVideoById(name: string) {
     return this.videoApiService.getVideoById(name).pipe(
       pluck('items'),
