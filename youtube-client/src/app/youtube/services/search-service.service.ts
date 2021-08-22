@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, pluck, switchMap } from 'rxjs/operators';
 import VideoServiceApi from '../models/api-service.model';
 import { VideoStatsExtented } from '../models/search-item.model';
 import { API_SERVICE } from '../providers/video-service.provider';
@@ -22,5 +22,11 @@ export class SearchVideoService {
 
   searchVideos(name: string) {
     this.searchString$.next(name);
+  }
+  searchVideoById(name: string) {
+    return this.videoApiService.getVideoById(name).pipe(
+      pluck('items'),
+      map((item) => item[0]),
+    );
   }
 }

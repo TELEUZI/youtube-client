@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subject } from 'rxjs';
-import { map, switchMap, takeUntil } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { VideoStatsExtented } from '../../models/search-item.model';
 import { SearchVideoService } from '../../services/search-service.service';
 
@@ -21,9 +21,7 @@ export class DetailedInformationPageComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         switchMap((params: Params) => {
-          return this.searchVideoService.videos$.pipe(
-            map((videos: VideoStatsExtented[]) => videos.find((video) => video.id === params.name)),
-          );
+          return this.searchVideoService.searchVideoById(params.name);
         }),
       )
       .subscribe((video: VideoStatsExtented | undefined) => {

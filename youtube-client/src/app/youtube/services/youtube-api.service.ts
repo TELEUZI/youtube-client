@@ -26,7 +26,7 @@ export class YoutubeApiService implements VideoServiceApi {
       : new Observable();
   }
 
-  public getVideoById(videoId: string) {
+  getVideoById(videoId: string) {
     return this.httpClient.get<SearchVideoResponse>(
       `${BASE_API_URL}/videos?part=snippet&part=statistics&id=${videoId}`,
     );
