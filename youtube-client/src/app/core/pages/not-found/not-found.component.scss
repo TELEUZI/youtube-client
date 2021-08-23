@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: slateblue;
+}
+
+.not-found-icon {
+  width: 50vw;
+  height: 50vh;
+  background-image: url(../../../../assets/404.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}

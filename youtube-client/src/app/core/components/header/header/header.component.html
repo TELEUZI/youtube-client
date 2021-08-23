@@ -1,0 +1,32 @@
+<a routerLink="/">
+  <img class="logo" alt="Angular Logo" src="./../../../../../assets/logo.svg" />
+</a>
+<div class="search-group">
+  <form action="">
+    <mat-form-field class="example-form-field" appearance="fill">
+      <input
+        (input)="getResult(value)"
+        matInput
+        type="search"
+        [(ngModel)]="value"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <button
+        *ngIf="value"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="resetQueryString()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <button mat-ripple class="settings" (click)="toggleFilters()"></button>
+</div>
+
+<app-login-information
+  [userName]="userName$ | async"
+  [isLoggedIn]="isLoggedIn$ | async"
+  (logOut)="logOut()"
+></app-login-information>
