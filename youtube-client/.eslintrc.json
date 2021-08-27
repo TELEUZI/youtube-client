@@ -21,7 +21,8 @@
         "plugin:@angular-eslint/template/process-inline-templates",
         "eslint-config-prettier",
         "plugin:prettier/recommended",
-        "plugin:rxjs/recommended"
+        "plugin:rxjs/recommended",
+        "plugin:ngrx/recommended"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -41,9 +42,21 @@
           }
         ],
         "import/prefer-default-export": "off",
-        "class-methods-use-this": ["error", { "exceptMethods": ["transform", "canActivate", "canLoad"] }],
+        "class-methods-use-this": [
+          "error",
+          {
+            "exceptMethods": [
+              "transform",
+              "canActivate",
+              "canLoad"
+            ]
+          }
+        ],
         "no-console": "off"
-      }
+      },
+      "plugins": [
+        "ngrx"
+      ]
     },
     {
       "files": [
@@ -55,13 +68,22 @@
       "rules": {}
     },
     {
-      "files": ["src/**/*.spec.ts", "src/**/*.d.ts"],
+      "files": [
+        "src/**/*.spec.ts",
+        "src/**/*.d.ts"
+      ],
       "parserOptions": {
         "project": "./tsconfig.spec.json"
       },
-      "extends": ["plugin:jasmine/recommended"],
-      "plugins": ["jasmine"],
-      "env": { "jasmine": true },
+      "extends": [
+        "plugin:jasmine/recommended"
+      ],
+      "plugins": [
+        "jasmine"
+      ],
+      "env": {
+        "jasmine": true
+      },
       "rules": {
         "@typescript-eslint/no-unused-vars": "off"
       }

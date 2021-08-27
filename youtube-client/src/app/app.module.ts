@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { AppStoreModule } from './redux/store.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    AppStoreModule,
   ],
   bootstrap: [AppComponent],
 })

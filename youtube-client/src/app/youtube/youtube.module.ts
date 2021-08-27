@@ -12,6 +12,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { YoutubeApiService } from './services/youtube-api.service';
 import { YoutubeRoutingModule } from './youtube-routing.module';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 
 export function videoServiceFactory(httpClient: HttpClient) {
   return new YoutubeApiService(httpClient);
@@ -27,6 +28,7 @@ export function videoServiceFactory(httpClient: HttpClient) {
     BorderColorDirective,
     DetailedInformationPageComponent,
     BaseCardComponent,
+    AdminPageComponent,
   ],
   imports: [SharedModule, YoutubeRoutingModule],
   exports: [MainPageComponent],

@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-login-information',
   templateUrl: './login-information.component.html',
   styleUrls: ['./login-information.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginInformationComponent {
   @Input() public userName!: string | null;

@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import SortFieldType from 'src/app/youtube/models/sort-field.model';
 
 @Component({
   selector: 'app-filter-results',
   templateUrl: './filter-results.component.html',
   styleUrls: ['./filter-results.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterResultsComponent {
   @Output() public readonly sort = new EventEmitter<SortFieldType>();

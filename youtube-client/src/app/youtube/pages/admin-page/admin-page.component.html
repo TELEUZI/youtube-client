@@ -1,0 +1,38 @@
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
+
+<div class="login">
+  <h2 class="active">Create custom card</h2>
+
+  <h2 class="nonactive">sign up</h2>
+  <form>
+    <input type="text" class="text" #title name="username" />
+    <span>title</span>
+
+    <br />
+
+    <br />
+
+    <input type="text" class="text" #description name="description" />
+    <span>description</span>
+    <br />
+
+    <input type="text" class="text" #imageLink name="image-link" />
+    <span>image-link</span>
+    <br />
+    <input type="text" class="text" #videoLink name="video-link" />
+    <span>video-link</span>
+    <br />
+
+    <input type="checkbox" id="checkbox-1-1" class="custom-checkbox" />
+    <input
+      (click)="submitForm($event, title.value, description.value, imageLink.value, videoLink.value)"
+      class="signin"
+      type="submit"
+      value="Sign In"
+    />
+
+    <hr />
+
+    <a href="#">Forgot Password?</a>
+  </form>
+</div>

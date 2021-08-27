@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
-import { map, pluck, switchMap } from 'rxjs/operators';
+import { catchError, map, pluck, switchMap } from 'rxjs/operators';
 import VideoServiceApi from '../models/api-service.model';
 import { VideoStatsExtented } from '../models/search-item.model';
 import { SearchResponse, SearchVideoResponse } from '../models/search-response.model';
@@ -22,6 +22,9 @@ export class YoutubeApiService implements VideoServiceApi {
               forkJoin(videos.map((video) => this.getVideoById(video.id.videoId))),
             ),
             map((value) => value.map((item) => item.items[0])),
+            catchError((_error, caught) => {
+              return caught;
+            }),
           )
       : new Observable();
   }
