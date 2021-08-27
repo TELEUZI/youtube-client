@@ -1,0 +1,52 @@
+<a [routerLink]="['/']">Назад</a>
+<mat-card *ngIf="video" class="card" appBorderColor [publishTime]="video.snippet.publishedAt">
+  <img mat-card-image src="{{ video.snippet.thumbnails.maxres.url }}" alt="Photo of a Shiba Inu" />
+  <div class="card-con">
+    <div class="card__sub">
+      <small>Paris</small>
+    </div>
+    <div class="card__item flexible">
+      <mat-card-title class="card__title">{{ video.snippet.title }}</mat-card-title>
+    </div>
+    <div class="channel">
+      <p class="channel__name">{{ video.snippet.channelTitle }}</p>
+      <p class="published-time">{{ video.snippet.publishedAt | date }}</p>
+    </div>
+    <mat-card-content class="card__content">
+      <div class="statistics">
+        <div class="statistics__item">
+          <div class="statistics-icon view-count-icon"></div>
+          <p>
+            {{ video.statistics.viewCount }}
+          </p>
+        </div>
+        <div class="statistics__item count-icon">
+          <div class="statistics-icon like-count-icon"></div>
+          <p>
+            {{ video.statistics.likeCount }}
+          </p>
+        </div>
+        <div class="statistics__item">
+          <div class="statistics-icon dislike-count-icon"></div>
+          <p>
+            {{ video.statistics.dislikeCount }}
+          </p>
+        </div>
+        <div class="statistics__item">
+          <div class="statistics-icon comment-count-icon"></div>
+          <p>
+            {{ video.statistics.commentCount }}
+          </p>
+        </div>
+      </div>
+    </mat-card-content>
+    <div class="card__item">
+      <small>Reading Time: 2min</small>
+    </div>
+    <div class="card__footer">
+      <mat-card-actions class="actions">
+        <button class="btn btn-primary" mat-button>Details</button>
+      </mat-card-actions>
+    </div>
+  </div>
+</mat-card>
