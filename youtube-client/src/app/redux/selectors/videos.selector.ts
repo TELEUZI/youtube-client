@@ -1,8 +1,12 @@
-// import { createSelector } from '@ngrx/store';
-// import { AppState, SearchCardsState } from '../state.models';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { searchCardsNodeName, SearchCardsState } from '../state.models';
 
-// const selectVideos = (state: AppState) => state.searchCards;
-// export const selectFeatureProperty = createSelector(
-//   selectVideos,
-//   (state: SearchCardsState) => state.videos,
-// );
+const selectVideosFeature = createFeatureSelector<SearchCardsState>(searchCardsNodeName);
+export const selectVideos = createSelector(
+  selectVideosFeature,
+  (state: SearchCardsState) => state[searchCardsNodeName],
+);
+export const selectVideo = (id: string) =>
+  createSelector(selectVideosFeature, (state: SearchCardsState) => {
+    return state[searchCardsNodeName].filter((v) => v.id === id)[0];
+  });

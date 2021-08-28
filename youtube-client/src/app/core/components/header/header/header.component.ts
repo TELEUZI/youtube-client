@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Event, NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { searchVideos } from 'src/app/redux/actions/youtube.actions';
 import { FilterVideoService } from 'src/app/youtube/services/filter-video.service';
-import { SearchVideoService } from 'src/app/youtube/services/search-service.service';
 
 @Component({
   selector: 'app-header',
@@ -23,10 +24,10 @@ export class HeaderComponent implements OnInit {
   public url?: string;
 
   constructor(
-    private searchVideoService: SearchVideoService,
     private filterVideoService: FilterVideoService,
     private router: Router,
     private authService: AuthService,
+    private store: Store,
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +48,9 @@ export class HeaderComponent implements OnInit {
     this.authService.logOut();
   }
 
-  getResult(value: string) {
-    this.searchVideoService.searchVideos(value);
+  getResult(videoName: string) {
+    // this.searchVideoService.searchVideos(value);
+    this.store.dispatch(searchVideos({ payload: { videoName } }));
   }
 
   toggleFiltersButton() {

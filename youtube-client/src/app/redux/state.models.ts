@@ -16,6 +16,9 @@ export interface CustomCardsState {
 export const initialCustomCardsState: CustomCardsState = {
   [customCardsNodeName]: [],
 };
+export const initialSearchCardsState: SearchCardsState = {
+  [searchCardsNodeName]: [],
+};
 export interface SearchCardsState {
   [searchCardsNodeName]: VideoStatsExtented[];
 }

@@ -1,8 +1,9 @@
-export interface VideoStatsExtented extends Video {
+export interface VideoStatsExtented extends Omit<Video, 'id'> {
   contentDetails: {
     duration: string;
   };
   statistics: Statistics;
+  id: string;
 }
 export interface Video {
   kind: string;

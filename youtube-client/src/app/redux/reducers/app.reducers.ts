@@ -1,9 +1,9 @@
-// const appReducer = createReducer(
-//   initialState,
-//   on appActions.action, state => ({ ...state, prop: updatedValue })),
-// );
+import { ActionReducerMap } from '@ngrx/store';
+import { AppState, customCardsNodeName, searchCardsNodeName } from '../state.models';
+import { cardReducer } from './card.reducer';
+import { youtubeReducer } from './youtube.reducer';
 
-// export function reducer(state: State | undefined, action: Action) {
-//   return appReducer(state, action);
-// }
-// export const appReducers = combineReducers({ CustomCardsState: cardReducer });
+export const appReducers: ActionReducerMap<AppState> = {
+  [customCardsNodeName]: cardReducer,
+  [searchCardsNodeName]: youtubeReducer,
+};
