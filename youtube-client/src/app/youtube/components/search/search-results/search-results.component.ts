@@ -29,4 +29,8 @@ export class SearchResultsComponent {
     public readonly filterVideoService: FilterVideoService,
     private readonly store: Store,
   ) {}
+
+  videoById(_index: number, video: VideoStatsExtented): string {
+    return video.id.videoId;
+  }
 }

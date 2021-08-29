@@ -1,7 +1,8 @@
 <div class="search-results" *ngIf="(videos$ | async)?.length">
   <div
     *ngFor="
-      let video of (videos$ | async)! | filter: (filterWord$ | async)! | sort: sortType:orderType
+      let video of (videos$ | async)! | filter: (filterWord$ | async)! | sort: sortType:orderType;
+      trackBy: videoById
     "
   >
     <app-search-item [video]="video"></app-search-item>
