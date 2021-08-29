@@ -5,14 +5,14 @@
 
   <h2 class="nonactive">sign up</h2>
   <form #myForm="ngForm" novalidate (ngSubmit)="onSubmit(myForm)">
-    <input type="text" class="text" #username name="username" ngModel />
+    <input type="text" class="text" name="username" ngModel />
     <span>username</span>
 
     <br />
 
     <br />
 
-    <input type="password" class="text" #password name="password" ngModel />
+    <input type="password" class="text" name="password" ngModel />
     <span>password</span>
     <br />
 

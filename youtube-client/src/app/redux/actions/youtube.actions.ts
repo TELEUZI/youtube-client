@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { VideoStatsExtented } from 'src/app/youtube/models/search-item.model';
 
-export enum CardActions {
+const enum YotubeActions {
   searchVideos = '[Youtube] Search videos',
   searchVideoById = '[Youtube] Search video by id',
   searchSuccess = '[Youtube] Search Success',
@@ -10,19 +10,19 @@ export enum CardActions {
 }
 
 export const searchVideos = createAction(
-  CardActions.searchVideos,
+  YotubeActions.searchVideos,
   props<{ payload: { videoName: string } }>(),
 );
 
 export const searchVideo = createAction(
-  CardActions.searchVideoById,
+  YotubeActions.searchVideoById,
   props<{ payload: { id: string } }>(),
 );
 export const searchSuccess = createAction(
-  CardActions.searchSuccess,
+  YotubeActions.searchSuccess,
   props<{ payload: { videos: VideoStatsExtented[] } }>(),
 );
 export const searchError = createAction(
-  CardActions.searchError,
+  YotubeActions.searchError,
   props<{ payload: { error: HttpErrorResponse } }>(),
 );

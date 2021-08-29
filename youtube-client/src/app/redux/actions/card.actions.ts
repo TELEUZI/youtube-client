@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { CustomCard } from '../state.models';
 
-export enum CardActions {
+const enum CardActions {
   create = '[Card] Create card',
   delete = '[Card] Delete card by title',
 }

@@ -15,7 +15,7 @@ import { searchError, searchSuccess, searchVideos } from '../actions/youtube.act
 
 @Injectable({ providedIn: 'root' })
 export class YoutubeEffects {
-  effectName$ = createEffect(() => {
+  getVideosEffect$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(searchVideos),
       switchMap((action) =>

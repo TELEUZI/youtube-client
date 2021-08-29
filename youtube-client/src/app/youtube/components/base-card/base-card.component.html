@@ -8,37 +8,10 @@
     </div>
     <div class="channel">
       <p class="channel__name">
-        <!-- {{ video.snippet.channelTitle }} <span class="dot">•</span> -->
         {{ card.creationDate | date }} <span class="dot">•</span>
         {{ card.description }}
       </p>
     </div>
-    <!-- <div *ngIf="video.statistics" class="statistics">
-      <div class="statistics__item">
-        <div class="statistics-icon view-count-icon"></div>
-        <p>
-          {{ video.statistics.viewCount }}
-        </p>
-      </div>
-      <div class="statistics__item count-icon">
-        <div class="statistics-icon like-count-icon"></div>
-        <p>
-          {{ video.statistics.likeCount }}
-        </p>
-      </div>
-      <div class="statistics__item">
-        <div class="statistics-icon dislike-count-icon"></div>
-        <p>
-          {{ video.statistics.dislikeCount }}
-        </p>
-      </div>
-      <div class="statistics__item">
-        <div class="statistics-icon comment-count-icon"></div>
-        <p>
-          {{ video.statistics.commentCount }}
-        </p>
-      </div>
-    </div> -->
     <div class="card__bottom">
       <div class="card__button">
         <a target="_blank" [href]="card.videoLink" class="btn btn-primary" mat-button>Watch</a>
