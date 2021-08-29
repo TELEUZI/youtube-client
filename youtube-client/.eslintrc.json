@@ -48,7 +48,8 @@
             "exceptMethods": [
               "transform",
               "canActivate",
-              "canLoad"
+              "canLoad",
+              "intercept"
             ]
           }
         ],

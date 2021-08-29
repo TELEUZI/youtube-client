@@ -25,5 +25,8 @@ export class SearchResultsComponent {
 
   public readonly cards$: Observable<CustomCard[]> = this.store.select<CustomCard[]>(selectCard);
 
-  constructor(public filterVideoService: FilterVideoService, private store: Store) {}
+  constructor(
+    public readonly filterVideoService: FilterVideoService,
+    private readonly store: Store,
+  ) {}
 }

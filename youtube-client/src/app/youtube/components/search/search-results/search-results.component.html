@@ -1,9 +1,12 @@
 <div class="search-results" *ngIf="(videos$ | async)?.length">
-  <div *ngFor="let video of videos$ | async">
+  <div
+    *ngFor="
+      let video of (videos$ | async)! | filter: (filterWord$ | async)! | sort: sortType:orderType
+    "
+  >
     <app-search-item [video]="video"></app-search-item>
   </div>
   <div *ngFor="let card of cards$ | async">
-    <!-- <app-search-item [video]="video"></app-search-item> -->
     <app-base-card [card]="card"></app-base-card>
   </div>
 </div>

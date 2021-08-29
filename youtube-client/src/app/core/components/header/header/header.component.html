@@ -1,7 +1,7 @@
 <a routerLink="/">
   <img class="logo" alt="Angular Logo" src="./../../../../../assets/logo.svg" />
 </a>
-<div class="search-group">
+<div *ngIf="isMain" class="search-group">
   <form action="">
     <mat-form-field class="example-form-field" appearance="fill">
       <input

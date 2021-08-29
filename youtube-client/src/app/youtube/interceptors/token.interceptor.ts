@@ -1,7 +1,8 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-const TOKEN = 'AIzaSyDvNNzdpjAQgTWOYSyZMeq-N-8Tu6YYP50';
+
+const TOKEN = 'AIzaSyCfUvDZOh84SM4lO1eJ-IDn5WUBB9lUw4U';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

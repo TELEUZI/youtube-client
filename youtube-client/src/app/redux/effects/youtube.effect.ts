@@ -24,9 +24,10 @@ export class YoutubeEffects {
           distinctUntilChanged(),
           filter((searchString) => searchString.length > 3),
           map((videos) => searchSuccess({ payload: { videos } })),
-          catchError((error: unknown) =>
-            of(searchError({ payload: { error: <HttpErrorResponse>error } })),
-          ),
+          catchError((error: unknown) => {
+            console.log(error);
+            return of(searchError({ payload: { error: <HttpErrorResponse>error } }));
+          }),
         ),
       ),
     );

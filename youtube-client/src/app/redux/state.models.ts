@@ -1,3 +1,4 @@
+import { RouterReducerState } from '@ngrx/router-store';
 import { VideoStatsExtented } from '../youtube/models/search-item.model';
 
 export const customCardsNodeName = 'customCards';
@@ -26,4 +27,5 @@ export interface SearchCardsState {
 export interface AppState {
   [customCardsNodeName]: CustomCardsState;
   [searchCardsNodeName]: SearchCardsState;
+  router: RouterReducerState<any>;
 }

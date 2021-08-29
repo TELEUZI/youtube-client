@@ -1,5 +1,5 @@
 export const enum RouteNames {
-  LOGIN = '/login',
+  LOGIN = 'login',
   HOME = '/',
   SEARCH = '/search',
 }
