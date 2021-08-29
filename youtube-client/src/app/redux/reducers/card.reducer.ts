@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { createCard } from '../actions/card.actions';
 import { customCardsNodeName, CustomCardsState, initialCustomCardsState } from '../state.models';
 
@@ -12,6 +12,6 @@ const reducer = createReducer(
     }),
   ),
 );
-export function cardReducer(state: CustomCardsState | undefined, action: any) {
+export function cardReducer(state: CustomCardsState | undefined, action: Action) {
   return reducer(state, action);
 }

@@ -5,6 +5,14 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class FilterVideoService {
+  public get isFilterShow$() {
+    return this.showFilters$$.pipe();
+  }
+
+  public get filterWord$() {
+    return this.filterWordSourse$$.pipe();
+  }
+
   private readonly showFilters$$ = new BehaviorSubject<boolean>(false);
 
   private readonly filterWordSourse$$: Subject<string> = new Subject<string>();
@@ -15,13 +23,5 @@ export class FilterVideoService {
 
   setFilterWord(word: string) {
     this.filterWordSourse$$.next(word);
-  }
-
-  public get isFilterShow$() {
-    return this.showFilters$$.pipe();
-  }
-
-  get filterWord$() {
-    return this.filterWordSourse$$.pipe();
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -12,5 +13,9 @@ export class LoginPageComponent {
   submitForm(event: Event, name: string, password: string) {
     event.preventDefault();
     this.authService.logIn(name, password);
+  }
+
+  onSubmit(form: NgForm) {
+    this.authService.logIn(form.value.name, form.value.password);
   }
 }

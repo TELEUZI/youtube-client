@@ -12,16 +12,18 @@ import { VideoStatsExtented } from '../../models/search-item.model';
   styleUrls: ['./detailed-information-page.component.scss'],
 })
 export class DetailedInformationPageComponent implements OnDestroy {
-  destroy$: Subject<void> = new Subject();
+  public readonly destroy$: Subject<void> = new Subject();
 
-  public video$: Observable<VideoStatsExtented> = this.route.params.pipe(
-    switchMap((params: Params) => {
-      return this.store.select(selectVideo(params.name));
-    }),
-    takeUntil(this.destroy$),
-  );
+  public readonly video$: Observable<VideoStatsExtented>;
 
-  constructor(private route: ActivatedRoute, private store: Store) {}
+  constructor(private route: ActivatedRoute, private store: Store) {
+    this.video$ = this.route.params.pipe(
+      switchMap((params: Params) => {
+        return this.store.select(selectVideo(params.name));
+      }),
+      takeUntil(this.destroy$),
+    );
+  }
 
   ngOnDestroy(): void {
     this.destroy$.next();

@@ -4,29 +4,25 @@
   <h2 class="active">sign in</h2>
 
   <h2 class="nonactive">sign up</h2>
-  <form>
-    <input type="text" class="text" #username name="username" />
+  <form #myForm="ngForm" novalidate (ngSubmit)="onSubmit(myForm)">
+    <input type="text" class="text" #username name="username" ngModel />
     <span>username</span>
 
     <br />
 
     <br />
 
-    <input type="password" class="text" #password name="password" />
+    <input type="password" class="text" #password name="password" ngModel />
     <span>password</span>
     <br />
 
     <input type="checkbox" id="checkbox-1-1" class="custom-checkbox" />
     <label for="checkbox-1-1">Keep me Signed in</label>
-    <input
-      (click)="submitForm($event, username.value, password.value)"
-      class="signin"
-      type="submit"
-      value="Sign In"
-    />
+    <input class="signin" type="submit" value="Sign In" />
 
     <hr />
 
     <a href="#">Forgot Password?</a>
   </form>
 </div>
+<!-- (click)="submitForm($event, username.value, password.value)" -->

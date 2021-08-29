@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { RouteNames } from 'src/app/app.constants';
+import { RouteNames } from 'src/app/core/app.constants';
 import StorageService from 'src/app/core/models/storage-service.model';
 import { STORAGE_SERVICE } from 'src/app/core/providers/storage-service.provider';
 
@@ -9,11 +9,6 @@ import { STORAGE_SERVICE } from 'src/app/core/providers/storage-service.provider
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    @Inject(STORAGE_SERVICE) private storageService: StorageService,
-    private router: Router,
-  ) {}
-
   public get userName$() {
     return this.userNameSource$$.pipe();
   }
@@ -21,6 +16,17 @@ export class AuthService {
   public get isAuthenticated$() {
     return this.isAuthenticatedSource$$.pipe();
   }
+
+  private readonly isAuthenticatedSource$$ = new BehaviorSubject<boolean>(this.getAuthenticated());
+
+  private readonly userNameSource$$ = new BehaviorSubject<string>(
+    this.storageService.get('userName') || '',
+  );
+
+  constructor(
+    @Inject(STORAGE_SERVICE) private storageService: StorageService,
+    private router: Router,
+  ) {}
 
   setAuthenticated(value: boolean) {
     this.isAuthenticatedSource$$.next(value);
@@ -47,10 +53,4 @@ export class AuthService {
     );
     this.router.navigateByUrl('/');
   }
-
-  private readonly isAuthenticatedSource$$ = new BehaviorSubject<boolean>(this.getAuthenticated());
-
-  private readonly userNameSource$$ = new BehaviorSubject<string>(
-    this.storageService.get('userName') || '',
-  );
 }

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 const TOKEN = 'AIzaSyCfUvDZOh84SM4lO1eJ-IDn5WUBB9lUw4U';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const request = req.clone({
       url: req.url.concat(req.url.includes('?') ? `&key=${TOKEN}` : `?key=${TOKEN}`),
     });

@@ -3,6 +3,7 @@ import { VideoStatsExtented } from '../youtube/models/search-item.model';
 
 export const customCardsNodeName = 'customCards';
 export const searchCardsNodeName = 'searchCards';
+export const routerNodeName = 'router';
 
 export interface CustomCard {
   title: string;
@@ -14,12 +15,7 @@ export interface CustomCard {
 export interface CustomCardsState {
   [customCardsNodeName]: CustomCard[];
 }
-export const initialCustomCardsState: CustomCardsState = {
-  [customCardsNodeName]: [],
-};
-export const initialSearchCardsState: SearchCardsState = {
-  [searchCardsNodeName]: [],
-};
+
 export interface SearchCardsState {
   [searchCardsNodeName]: VideoStatsExtented[];
 }
@@ -27,5 +23,12 @@ export interface SearchCardsState {
 export interface AppState {
   [customCardsNodeName]: CustomCardsState;
   [searchCardsNodeName]: SearchCardsState;
-  router: RouterReducerState<any>;
+  [routerNodeName]: RouterReducerState;
 }
+
+export const initialCustomCardsState: CustomCardsState = {
+  [customCardsNodeName]: [],
+};
+export const initialSearchCardsState: SearchCardsState = {
+  [searchCardsNodeName]: [],
+};

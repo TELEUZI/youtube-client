@@ -23,11 +23,14 @@ export class MainPageComponent {
 
   public orderType = 0;
 
-  public filterWord$: Observable<string> = this.filterVideoService.filterWord$;
+  public readonly filterWord$: Observable<string>;
 
-  public isShow$: Observable<boolean> = this.filterVideoService.isFilterShow$;
+  public readonly isShow$: Observable<boolean>;
 
-  constructor(private filterVideoService: FilterVideoService) {}
+  constructor(private filterVideoService: FilterVideoService) {
+    this.isShow$ = this.filterVideoService.isFilterShow$;
+    this.filterWord$ = this.filterVideoService.filterWord$;
+  }
 
   updateSort(type: SortFieldType) {
     if (type === this.sortType) {

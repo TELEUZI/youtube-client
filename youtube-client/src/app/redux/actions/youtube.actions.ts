@@ -6,7 +6,7 @@ export enum CardActions {
   searchVideos = '[Youtube] Search videos',
   searchVideoById = '[Youtube] Search video by id',
   searchSuccess = '[Youtube] Search Success',
-  // delete = '[Youtube] Delete card by title',
+  searchError = '[Youtube] Search Error',
 }
 
 export const searchVideos = createAction(
@@ -23,9 +23,6 @@ export const searchSuccess = createAction(
   props<{ payload: { videos: VideoStatsExtented[] } }>(),
 );
 export const searchError = createAction(
-  CardActions.searchSuccess,
+  CardActions.searchError,
   props<{ payload: { error: HttpErrorResponse } }>(),
 );
-// export const deleteCard = createAction(CardActions.delete, props<{ payload: { title: string } }>());
-// export type CustomCardActions = typeof createCard | typeof deleteCard;
-// export const action = createAction('[Source] Event', props<{ payload: CustomCard }>());

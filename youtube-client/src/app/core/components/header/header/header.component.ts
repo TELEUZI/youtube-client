@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -12,40 +11,25 @@ import { FilterVideoService } from 'src/app/youtube/services/filter-video.servic
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   public value: string = '';
 
   public isSearching = false;
 
-  public userName$!: Observable<string>;
+  public readonly userName$: Observable<string>;
 
-  public isLoggedIn$!: Observable<boolean>;
+  public readonly isLoggedIn$: Observable<boolean>;
 
-  public url?: string;
+  public readonly url: Observable<string>;
 
   constructor(
     private filterVideoService: FilterVideoService,
-    private router: Router,
     private authService: AuthService,
     private store: Store,
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.userName$ = this.authService.userName$;
     this.isLoggedIn$ = this.authService.isAuthenticated$;
-    this.store.select(selectUrl).subscribe((name) => {
-      console.log(name);
-      this.url = name;
-    });
-    // this.router.events
-    //   .pipe(filter((e: Event): e is RouterEvent => e instanceof NavigationEnd))
-    //   .subscribe(() => {
-    //     this.url = this.router.url;
-    //   });
-  }
-
-  get isMain() {
-    return this.url === '/';
+    this.url = this.store.select(selectUrl);
   }
 
   logOut() {
@@ -53,7 +37,6 @@ export class HeaderComponent implements OnInit {
   }
 
   getResult(videoName: string) {
-    // this.searchVideoService.searchVideos(value);
     this.store.dispatch(searchVideos({ payload: { videoName } }));
   }
 

@@ -18,19 +18,22 @@ export class SearchResultsComponent {
 
   @Input() public orderType!: number;
 
-  public readonly videos$: Observable<VideoStatsExtented[]> =
-    this.store.select<VideoStatsExtented[]>(selectVideos);
+  public readonly videos$: Observable<VideoStatsExtented[]>;
 
-  public readonly filterWord$: Observable<string> = this.filterVideoService.filterWord$;
+  public readonly filterWord$: Observable<string>;
 
-  public readonly cards$: Observable<CustomCard[]> = this.store.select<CustomCard[]>(selectCard);
+  public readonly cards$: Observable<CustomCard[]>;
 
   constructor(
     public readonly filterVideoService: FilterVideoService,
     private readonly store: Store,
-  ) {}
+  ) {
+    this.videos$ = this.store.select<VideoStatsExtented[]>(selectVideos);
+    this.filterWord$ = this.filterVideoService.filterWord$;
+    this.cards$ = this.store.select<CustomCard[]>(selectCard);
+  }
 
   videoById(_index: number, video: VideoStatsExtented): string {
-    return video.id.videoId;
+    return video.id;
   }
 }
