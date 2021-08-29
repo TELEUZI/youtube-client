@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import Video from 'src/app/youtube/models/search-item.model';
+import { VideoStatsExtented } from 'src/app/youtube/models/search-item.model';
 import SortFieldType from 'src/app/youtube/models/sort-field.model';
 import { FilterVideoService } from 'src/app/youtube/services/filter-video.service';
 import { SearchVideoService } from 'src/app/youtube/services/search-service.service';
@@ -15,7 +15,7 @@ export class SearchResultsComponent {
 
   @Input() public orderType!: number;
 
-  public readonly videos$: Observable<Video[]> = this.searchVideoService.videos$;
+  public readonly videos$: Observable<VideoStatsExtented[]> = this.searchVideoService.videos$;
 
   public readonly filterWord$: Observable<string> = this.filterVideoService.filterWord$;
 
@@ -23,4 +23,8 @@ export class SearchResultsComponent {
     private searchVideoService: SearchVideoService,
     public filterVideoService: FilterVideoService,
   ) {}
+
+  videoById(_index: number, video: VideoStatsExtented): string {
+    return video.id.videoId;
+  }
 }

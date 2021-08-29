@@ -1,13 +1,19 @@
-import Video from './search-item.model';
+import { Video, VideoStatsExtented } from './search-item.model';
 
-export interface SearchResponse {
+export interface SearchVideoResponse {
   kind: string;
   etag: string;
   pageInfo: PageInfo;
-  items: Video[];
+  items: VideoStatsExtented[];
 }
 
 export interface PageInfo {
   totalResults: number;
   resultsPerPage: number;
+}
+export interface SearchResponse {
+  kind: string;
+  etag: string;
+  pageInfo: PageInfo;
+  items: Video[];
 }

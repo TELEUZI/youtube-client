@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import Video from 'src/app/youtube/models/search-item.model';
+import { VideoStatsExtented } from 'src/app/youtube/models/search-item.model';
 
 @Component({
   selector: 'app-search-item',
@@ -7,5 +7,5 @@ import Video from 'src/app/youtube/models/search-item.model';
   styleUrls: ['./search-item.component.scss'],
 })
 export class SearchItemComponent {
-  @Input() public video!: Video;
+  @Input() public video!: VideoStatsExtented;
 }

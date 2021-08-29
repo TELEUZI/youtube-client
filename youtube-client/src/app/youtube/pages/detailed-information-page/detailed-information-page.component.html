@@ -1,6 +1,6 @@
 <a [routerLink]="['/']">Назад</a>
 <mat-card *ngIf="video" class="card" appBorderColor [publishTime]="video.snippet.publishedAt">
-  <img mat-card-image src="{{ video.snippet.thumbnails.maxres.url }}" alt="Photo of a Shiba Inu" />
+  <img mat-card-image src="{{ video.snippet.thumbnails.default.url }}" alt="Photo of a Shiba Inu" />
   <div class="card-con">
     <div class="card__sub">
       <small>Paris</small>
@@ -13,7 +13,7 @@
       <p class="published-time">{{ video.snippet.publishedAt | date }}</p>
     </div>
     <mat-card-content class="card__content">
-      <div class="statistics">
+      <div *ngIf="video.statistics" class="statistics">
         <div class="statistics__item">
           <div class="statistics-icon view-count-icon"></div>
           <p>

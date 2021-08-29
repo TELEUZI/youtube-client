@@ -1,6 +1,6 @@
 <div appBorderColor [publishTime]="video.snippet.publishedAt" class="cards__card card">
   <div class="card__image">
-    <img src="{{ video.snippet.thumbnails.maxres.url }}" alt="" />
+    <img src="{{ video.snippet.thumbnails.default.url }}" alt="" />
   </div>
   <div class="card__body">
     <div class="card__title flexible">
@@ -12,7 +12,7 @@
         {{ video.snippet.publishedAt | date }}
       </p>
     </div>
-    <div class="statistics">
+    <div *ngIf="video.statistics" class="statistics">
       <div class="statistics__item">
         <div class="statistics-icon view-count-icon"></div>
         <p>
