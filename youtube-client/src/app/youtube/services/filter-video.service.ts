@@ -9,15 +9,19 @@ export class FilterVideoService {
 
   private readonly filterWordSourse$$: Subject<string> = new Subject<string>();
 
-  public readonly filterWord$ = this.filterWordSourse$$.pipe();
-
-  public readonly isFilterShow$ = this.showFilters$$.pipe();
-
   toggleFilters() {
     this.showFilters$$.next(!this.showFilters$$.value);
   }
 
   setFilterWord(word: string) {
     this.filterWordSourse$$.next(word);
+  }
+
+  public get isFilterShow$() {
+    return this.showFilters$$.pipe();
+  }
+
+  get filterWord$() {
+    return this.filterWordSourse$$.pipe();
   }
 }
