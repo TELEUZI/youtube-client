@@ -9,23 +9,9 @@ import { createCard } from 'src/app/redux/actions/card.actions';
   styleUrls: ['./admin-page.component.scss'],
 })
 export class AdminPageComponent {
-  public title: string;
-
-  public description: string;
-
-  public imageLink: string;
-
-  public videoLink: string;
-
-  constructor(private store: Store) {
-    this.title = '';
-    this.description = '';
-    this.imageLink = '';
-    this.videoLink = '';
-  }
+  constructor(private store: Store) {}
 
   onSubmit(form: NgForm) {
-    console.log(form);
     this.store.dispatch(
       createCard({
         payload: {

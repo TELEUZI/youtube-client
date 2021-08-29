@@ -8,14 +8,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent {
-  public username: string;
-
-  public password: string;
-
-  constructor(private authService: AuthService) {
-    this.username = '';
-    this.password = '';
-  }
+  constructor(private authService: AuthService) {}
 
   onSubmit(form: NgForm) {
     this.authService.logIn(form.value.username, form.value.password);
