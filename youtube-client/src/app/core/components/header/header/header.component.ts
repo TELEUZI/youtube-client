@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { searchVideos } from 'src/app/redux/actions/youtube.actions';
 import { selectUrl } from 'src/app/redux/selectors/router.selector';
@@ -18,6 +19,8 @@ export class HeaderComponent {
 
   public readonly userName$: Observable<string>;
 
+  public readonly searchString$: BehaviorSubject<string> = new BehaviorSubject<string>(this.value);
+
   public readonly isLoggedIn$: Observable<boolean>;
 
   public readonly url: Observable<string>;
@@ -29,6 +32,14 @@ export class HeaderComponent {
   ) {
     this.userName$ = this.authService.userName$;
     this.isLoggedIn$ = this.authService.isAuthenticated$;
+    this.searchString$.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      filter((searchString) => searchString.length >= 3),
+      tap((videoName) => {
+        this.store.dispatch(searchVideos({ payload: { videoName } }));
+      }),
+    );
     this.url = this.store.select(selectUrl);
   }
 
@@ -37,7 +48,7 @@ export class HeaderComponent {
   }
 
   getResult(videoName: string) {
-    this.store.dispatch(searchVideos({ payload: { videoName } }));
+    this.searchString$.next(videoName);
   }
 
   toggleFiltersButton() {
