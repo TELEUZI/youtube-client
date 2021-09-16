@@ -1,0 +1,28 @@
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
+
+<div class="login">
+  <h2 class="active">Create custom card</h2>
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <input type="text" class="text" name="title" ngModel />
+    <span>title</span>
+
+    <br />
+
+    <br />
+
+    <input type="text" class="text" name="description" ngModel />
+    <span>description</span>
+    <br />
+
+    <input type="text" class="text" name="imageLink" ngModel />
+    <span>image-link</span>
+    <br />
+    <input type="text" class="text" name="videoLink" ngModel />
+    <span>video-link</span>
+    <br />
+
+    <input class="signin" type="submit" value="Create card" />
+
+    <hr />
+  </form>
+</div>

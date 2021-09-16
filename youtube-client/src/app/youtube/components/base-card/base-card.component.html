@@ -1,1 +1,21 @@
-<p>base-card works!</p>
+<div appBorderColor [publishTime]="card.creationDate" class="cards__card card">
+  <div class="card__image">
+    <img [src]="card.imageLink" alt="" />
+  </div>
+  <div class="card__body">
+    <div class="card__title flexible">
+      <p>{{ card.title }}</p>
+    </div>
+    <div class="channel">
+      <p class="channel__name">
+        {{ card.creationDate | date }} <span class="dot">•</span>
+        {{ card.description }}
+      </p>
+    </div>
+    <div class="card__bottom">
+      <div class="card__button">
+        <a target="_blank" [href]="card.videoLink" class="btn btn-primary" mat-button>Watch</a>
+      </div>
+    </div>
+  </div>
+</div>

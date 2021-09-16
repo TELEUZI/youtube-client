@@ -1,54 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import { Event, NavigationEnd, Router, RouterEvent } from '@angular/router';
-import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { searchVideos } from 'src/app/redux/actions/youtube.actions';
+import { selectUrl } from 'src/app/redux/selectors/router.selector';
 import { FilterVideoService } from 'src/app/youtube/services/filter-video.service';
-import { SearchVideoService } from 'src/app/youtube/services/search-service.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   public value: string = '';
 
   public isSearching = false;
 
-  public userName$!: Observable<string>;
+  public readonly userName$: Observable<string>;
 
-  public isLoggedIn$!: Observable<boolean>;
+  public readonly searchString$: BehaviorSubject<string> = new BehaviorSubject<string>(this.value);
 
-  public url?: string;
+  public readonly isLoggedIn$: Observable<boolean>;
+
+  public readonly url: Observable<string>;
 
   constructor(
-    private searchVideoService: SearchVideoService,
     private filterVideoService: FilterVideoService,
-    private router: Router,
     private authService: AuthService,
-  ) {}
-
-  ngOnInit(): void {
+    private store: Store,
+  ) {
     this.userName$ = this.authService.userName$;
     this.isLoggedIn$ = this.authService.isAuthenticated$;
-    this.router.events
-      .pipe(filter((e: Event): e is RouterEvent => e instanceof NavigationEnd))
-      .subscribe(() => {
-        this.url = this.router.url;
-      });
-  }
-
-  get isMain() {
-    return this.url === '/';
+    this.searchString$.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      filter((searchString) => searchString.length >= 3),
+      tap((videoName) => {
+        this.store.dispatch(searchVideos({ payload: { videoName } }));
+      }),
+    );
+    this.url = this.store.select(selectUrl);
   }
 
   logOut() {
     this.authService.logOut();
   }
 
-  getResult(value: string) {
-    this.searchVideoService.searchVideos(value);
+  getResult(videoName: string) {
+    this.searchString$.next(videoName);
   }
 
   toggleFiltersButton() {

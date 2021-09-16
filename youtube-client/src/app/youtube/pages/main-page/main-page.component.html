@@ -1,6 +1,6 @@
 <app-filter-results
   @toggle
-  *ngIf="isShow | async"
+  *ngIf="isShow$ | async"
   (sort)="updateSort($event)"
   (filter)="setFilter($event)"
 ></app-filter-results>

@@ -1,9 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { selectCard } from 'src/app/redux/selectors/custom-cars.selector';
+import { selectVideos } from 'src/app/redux/selectors/videos.selector';
+import { CustomCard } from 'src/app/redux/state.models';
 import { VideoStatsExtented } from 'src/app/youtube/models/search-item.model';
 import SortFieldType from 'src/app/youtube/models/sort-field.model';
 import { FilterVideoService } from 'src/app/youtube/services/filter-video.service';
-import { SearchVideoService } from 'src/app/youtube/services/search-service.service';
 
 @Component({
   selector: 'app-search-results',
@@ -15,16 +18,22 @@ export class SearchResultsComponent {
 
   @Input() public orderType!: number;
 
-  public readonly videos$: Observable<VideoStatsExtented[]> = this.searchVideoService.videos$;
+  public readonly videos$: Observable<VideoStatsExtented[]>;
 
-  public readonly filterWord$: Observable<string> = this.filterVideoService.filterWord$;
+  public readonly filterWord$: Observable<string>;
+
+  public readonly cards$: Observable<CustomCard[]>;
 
   constructor(
-    private searchVideoService: SearchVideoService,
-    public filterVideoService: FilterVideoService,
-  ) {}
+    public readonly filterVideoService: FilterVideoService,
+    private readonly store: Store,
+  ) {
+    this.videos$ = this.store.select<VideoStatsExtented[]>(selectVideos);
+    this.filterWord$ = this.filterVideoService.filterWord$;
+    this.cards$ = this.store.select<CustomCard[]>(selectCard);
+  }
 
   videoById(_index: number, video: VideoStatsExtented): string {
-    return video.id.videoId;
+    return video.id;
   }
 }

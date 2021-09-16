@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { httpInterceptorProviders } from '../youtube/providers/http-interceptors.provider';
 import { FooterComponent } from './components/footer/footer.component';
@@ -12,7 +11,7 @@ import { WINDOW_PROVIDER } from './providers/window.provider';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, LoginInformationComponent, NotFoundComponent],
-  imports: [SharedModule, FormsModule, CoreRoutingModule],
+  imports: [SharedModule, CoreRoutingModule],
   exports: [HeaderComponent, FooterComponent],
   providers: [WINDOW_PROVIDER, STORAGE_SERVICE_PROVIDER, httpInterceptorProviders],
 })

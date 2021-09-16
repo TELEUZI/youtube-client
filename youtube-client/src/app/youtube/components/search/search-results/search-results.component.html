@@ -7,4 +7,7 @@
   >
     <app-search-item [video]="video"></app-search-item>
   </div>
+  <div *ngFor="let card of cards$ | async">
+    <app-base-card [card]="card"></app-base-card>
+  </div>
 </div>
